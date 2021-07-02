@@ -31,6 +31,13 @@ import cv
 def get_analis():
     st.title("Pneumonia detection")
     uploaded_file = st.file_uploader("Choose a photo")
+    click = st.button("delete modedel")
+    if click:
+        if os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
+            os.remove("Pnevmania_detection/variables/variables.data-00000-of-00001")
+            st.write("delited")
+        else:
+            st.write("already doesn't exist")
     if uploaded_file is not None:
         if not os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
             output = 'Pnevmania_detection/variables/variables.data-00000-of-00001'

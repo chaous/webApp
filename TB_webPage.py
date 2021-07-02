@@ -27,6 +27,13 @@ from PIL import Image
 def get_analis():
     st.title("TB detection")
     uploaded_file = st.file_uploader("Choose a photo")
+    click = st.button("delete modedel")
+    if click:
+        if os.path.exists("TB_detection/variables/variables.data-00000-of-00001"):
+            os.remove("TB_detection/variables/variables.data-00000-of-00001")
+            st.write("delited")
+        else:
+            st.write("already doesn't exist")
     if uploaded_file is not None:
         if not os.path.exists("TB_detection/variables/variables.data-00000-of-00001"):
             output = 'TB_detection/variables/variables.data-00000-of-00001'

@@ -27,6 +27,13 @@ from PIL import Image
 def get_analis():
     st.title("Brain tumor detection")
     uploaded_file = st.file_uploader("Choose a photo")
+    click = st.button("delete modedel")
+    if click:
+        if os.path.exists("Brein_Tumor_detection/variables/variables.data-00000-of-00001"):
+            os.remove("Brein_Tumor_detection/variables/variables.data-00000-of-00001")
+            st.write("delited")
+        else:
+            st.write("already doesn't exist")
     if uploaded_file is not None:
         if not os.path.exists("Brein_Tumor_detection/variables/variables.data-00000-of-00001"):
             output = 'Brein_Tumor_detection/variables/variables.data-00000-of-00001'
