@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
-from random import randint
-from sklearn.utils import shuffle
-from sklearn.preprocessing import MinMaxScaler
+
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.models import Sequential

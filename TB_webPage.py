@@ -18,7 +18,6 @@ import streamlit as st
 from PIL import Image, ImageOps
 from tensorflow.keras.preprocessing.image import img_to_array
 import gdown
-import TB_webPage
 from PIL import Image
 
 

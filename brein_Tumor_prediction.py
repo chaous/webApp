@@ -9,11 +9,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.metrics import confusion_matrix
 import itertools
 import os
-import shutil
-import random
-import glob
-import matplotlib.pyplot as plt
-import warnings
+
 import streamlit as st
 from PIL import Image, ImageOps
 from tensorflow.keras.preprocessing.image import img_to_array

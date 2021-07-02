@@ -6,8 +6,6 @@ from tensorflow.keras.layers import Activation, Dense, Flatten, BatchNormalizati
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.metrics import categorical_crossentropy
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from sklearn.metrics import confusion_matrix
-import itertools
 import os
 import shutil
 import random
@@ -20,8 +18,7 @@ from tensorflow.keras.preprocessing.image import img_to_array
 import gdown
 import TB_webPage
 from PIL import Image
-import cv2
-import cv
+
 
 
 
