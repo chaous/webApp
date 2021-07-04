@@ -18,7 +18,7 @@ from tensorflow.keras.preprocessing.image import img_to_array
 import gdown
 import TB_webPage
 from PIL import Image
-import zipfile
+import urllib.request
 
 
 
@@ -30,23 +30,20 @@ def get_analis():
     uploaded_file = st.file_uploader("Choose a photo")
     click = st.button("delete model")
     if click:
-        if os.path.exists("Pnevmania_detection"):
-            os.remove("Pnevmania_detection")
+        if os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
+            os.remove("Pnevmania_detection/variables/variables.data-00000-of-00001")
             st.write("delited")
         else:
             st.write("already doesn't exist")
     if uploaded_file is not None:
-        if not os.path.exists("Pnevmania_detection"):
-            output = 'Pnevmania_detection'
-            url = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1zEi5SN5qO-4iybclVvI5UdYnzTlDPQdw"
+        if not os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
+            output = 'Pnevmania_detection/variables/variables.data-00000-of-00001'
+            url = "https://github.com/chaous/webApp/releases/download/1.0.0/variables.data-00000-of-00001"
             st.write("downloading a model this might take a while")
-            gdown.download(url, '_Pnevmania.zip', quiet=False)
-            st.write("unzipping")
-            with zipfile.ZipFile("_Pnevmania.zip", 'r') as zip_ref:
-                zip_ref.extractall(output)
-            os.remove('_Pnevmania.zip')
+            #gdown.download(url, output, quiet=False)
+            urllib.request.urlretrieve(url, output)
             st.write("Done")
-        model = keras.models.load_model("Pnevmania_detection/Pnevmania_detection")
+        model = keras.models.load_model("Pnevmania_detection")
         image = Image.open(uploaded_file, mode='r').convert('RGB')
         image = image.resize((224, 224), 3)
         #st.image(image)
