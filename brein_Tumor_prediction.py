@@ -16,7 +16,8 @@ from tensorflow.keras.preprocessing.image import img_to_array
 import gdown
 import TB_webPage
 from PIL import Image
-import zipfile
+import urllib.request
+
 
 
 
@@ -25,23 +26,19 @@ def get_analis():
     uploaded_file = st.file_uploader("Choose a photo")
     click = st.button("delete model")
     if click:
-        if os.path.exists("Brein_Tumor_detection"):
-            os.remove("Brein_Tumor_detection")
+        if os.path.exists("Brein_Tumor_detection/variables/variables.data-00000-of-00001"):
+            os.remove("Brein_Tumor_detection/variables/variables.data-00000-of-00001")
             st.write("delited")
         else:
             st.write("already doesn't exist")
     if uploaded_file is not None:
-        if not os.path.exists("Brein_Tumor_detection"):
-            output = 'Brein_Tumor_detection'
-            url = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1YETf4c1Y-x9r1Z9qBuV-NYKXdJthzfvb"
+        if not os.path.exists("Brein_Tumor_detection/variables/variables.data-00000-of-00001"):
+            output = 'Brein_Tumor_detection/variables/variables.data-00000-of-00001'
+            url = "https://github.com/chaous/webApp/releases/download/1.0.1/variables.data-00000-of-00001"
             st.write("dowlading a model this might take a while")
-            gdown.download(url, '_BrainTumor.zip', quiet=False)
-            st.write("unzipping")
-            with zipfile.ZipFile("_BrainTumor.zip", 'r') as zip_ref:
-                zip_ref.extractall(output)
-            os.remove('_BrainTumor.zip')
+            urllib.request.urlretrieve(url, output)
             st.write("Done")
-        model = keras.models.load_model("Brein_Tumor_detection/Brein_Tumor_detection")
+        model = keras.models.load_model("Brein_Tumor_detection")
         image = Image.open(uploaded_file)
         image = image.resize((224, 224), 3).convert('RGB')
         #st.image(image)

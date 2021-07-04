@@ -19,7 +19,7 @@ import gdown
 import TB_webPage
 from PIL import Image
 from google_drive_downloader import GoogleDriveDownloader as gdd
-import zipfile
+import urllib.request
 
 def get_analis():
     st.title("Skin disease")
@@ -27,23 +27,20 @@ def get_analis():
     uploaded_file = st.file_uploader("Choose a photo")
     click = st.button("delete model")
     if click:
-        if os.path.exists("Skin_canser_detection"):
-            os.remove("Skin_canser_detection")
+        if os.path.exists("Skin_canser_detection/variables/variables.data-00000-of-00001"):
+            os.remove("Skin_canser_detection/variables/variables.data-00000-of-00001")
             st.write("deleted")
         else:
             st.write("already doesn't exist")
     if uploaded_file is not None:
-        if not os.path.exists("Skin_canser_detection"):
-            output = 'Skin_canser_detection'
-            url = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1W5QMj9Yf3RcM7nlAylQUuuCia96nclgc"
+
+        if not os.path.exists("Skin_canser_detection/variables/variables.data-00000-of-00001"):
+            output = 'Skin_canser_detection/variables/variables.data-00000-of-00001'
+            url = "https://github.com/chaous/webApp/releases/download/1.0.2/variables.data-00000-of-00001"
             st.write("downloading a model this might take a while")
-            gdown.download(url, '_SkibCancer.zip', quiet=False)
-            st.write("unzipping")
-            with zipfile.ZipFile("_SkibCancer.zip", 'r') as zip_ref:
-                zip_ref.extractall(output)
-            os.remove('_SkibCancer.zip')
+            urllib.request.urlretrieve(url, output)
             st.write("Done")
-        model = keras.models.load_model("Skin_canser_detection/Skin_canser_detection")
+        model = keras.models.load_model("Skin_canser_detection")
         image = Image.open(uploaded_file, mode='r').convert('RGB')
         image = image.resize((224, 224), 3)
         # st.image(image)
