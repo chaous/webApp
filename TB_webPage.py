@@ -45,7 +45,7 @@ def get_analis():
                 zip_ref.extractall(output)
             os.remove('_detection.zip')
             st.write("Done")
-        model = keras.models.load_model("TB_detection/TB_detection")
+        model = keras.models.load_model("TB_detection")
         image = Image.open(uploaded_file)
         image = image.resize((224, 224), 3).convert('RGB')
         #st.image(image)
