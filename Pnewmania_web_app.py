@@ -28,7 +28,7 @@ from PIL import Image
 def get_analis():
     st.title("Pneumonia detection")
     uploaded_file = st.file_uploader("Choose a photo")
-    click = st.button("delete modedel")
+    click = st.button("delete model")
     if click:
         if os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
             os.remove("Pnevmania_detection/variables/variables.data-00000-of-00001")
@@ -39,10 +39,10 @@ def get_analis():
         if not os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
             output = 'Pnevmania_detection/variables/variables.data-00000-of-00001'
             url = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1xgzYISFN4dsmANETI0tRPYvHl70B0hzS"
-            st.write("dowlading a model this might take a while")
+            st.write("downloading a model this might take a while")
             gdown.download(url, output, quiet=False)
             st.write("Done")
-        model = keras.models.load_model("Pnevmania_detection")
+        model = keras.models.load_model("Pneumonia_detection")
         image = Image.open(uploaded_file, mode='r').convert('RGB')
         image = image.resize((224, 224), 3)
         #st.image(image)

@@ -18,7 +18,7 @@ def get_analis():
     for i in df:
         symptops_list.append(i)
 
-    symptoms = st.multiselect("pick sumptops", symptops_list)
+    symptoms = st.multiselect("pick symptoms", symptops_list)
     symptoms_for_ai = np.zeros(len(symptops_list))
     for i in symptoms:
         symptoms_for_ai[symptops_list.index(i)] = 1

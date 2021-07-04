@@ -37,7 +37,7 @@ def get_analis():
         if not os.path.exists("TB_detection/variables/variables.data-00000-of-00001"):
             output = 'TB_detection/variables/variables.data-00000-of-00001'
             url = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1Dtpfcf_ExrEyeeo-Z48RpGRVdT6cCzXC"
-            st.write("dowlading a model this might take a while")
+            st.write("downloading a model this might take a while")
             gdown.download(url, output, quiet=False)
             st.write("Done")
         model = keras.models.load_model("TB_detection")

@@ -23,7 +23,7 @@ from PIL import Image
 def get_analis():
     st.title("Brain tumor detection")
     uploaded_file = st.file_uploader("Choose a photo")
-    click = st.button("delete modedel")
+    click = st.button("delete model")
     if click:
         if os.path.exists("Brein_Tumor_detection/variables/variables.data-00000-of-00001"):
             os.remove("Brein_Tumor_detection/variables/variables.data-00000-of-00001")
@@ -37,7 +37,7 @@ def get_analis():
             st.write("dowlading a model this might take a while")
             gdown.download(url, output, quiet=False)
             st.write("Done")
-        model = keras.models.load_model("Brein_Tumor_detection")
+        model = keras.models.load_model("Brain_Tumor_detection")
         image = Image.open(uploaded_file)
         image = image.resize((224, 224), 3).convert('RGB')
         #st.image(image)
