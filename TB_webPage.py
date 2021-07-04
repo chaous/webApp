@@ -19,7 +19,8 @@ from PIL import Image, ImageOps
 from tensorflow.keras.preprocessing.image import img_to_array
 import gdown
 from PIL import Image
-
+from google_drive_downloader import GoogleDriveDownloader as gdd
+import zipfile
 
 
 
@@ -28,19 +29,23 @@ def get_analis():
     uploaded_file = st.file_uploader("Choose a photo")
     click = st.button("delete modedel")
     if click:
-        if os.path.exists("TB_detection/variables/variables.data-00000-of-00001"):
-            os.remove("TB_detection/variables/variables.data-00000-of-00001")
+        if os.path.exists("TB_detection"):
+            os.remove("TB_detection")
             st.write("delited")
         else:
             st.write("already doesn't exist")
     if uploaded_file is not None:
-        if not os.path.exists("TB_detection/variables/variables.data-00000-of-00001"):
-            output = 'TB_detection/variables/variables.data-00000-of-00001'
-            url = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1Dtpfcf_ExrEyeeo-Z48RpGRVdT6cCzXC"
+        if not os.path.exists("TB_detection"):
+            output = 'TB_detection'
+            url = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1dZwxRWTH8Qs-bCUprQPt1-56k88e4yGf"
             st.write("downloading a model this might take a while")
-            gdown.download(url, output, quiet=False)
+            gdown.download(url, '_detection.zip', quiet=False)
+            st.write("unzipping")
+            with zipfile.ZipFile("_detection.zip", 'r') as zip_ref:
+                zip_ref.extractall(output)
+            os.remove('_detection.zip')
             st.write("Done")
-        model = keras.models.load_model("TB_detection")
+        model = keras.models.load_model("TB_detection/TB_detection")
         image = Image.open(uploaded_file)
         image = image.resize((224, 224), 3).convert('RGB')
         #st.image(image)
