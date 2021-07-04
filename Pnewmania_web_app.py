@@ -27,7 +27,7 @@ import urllib.request
 
 def get_analis():
     st.title("Pneumonia detection")
-    st.write(os.listdir())
+    #st.write(os.listdir())
     uploaded_file = st.file_uploader("Choose a photo")
     click = st.button("delete model")
     if click:
