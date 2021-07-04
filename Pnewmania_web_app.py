@@ -27,6 +27,7 @@ import urllib.request
 
 def get_analis():
     st.title("Pneumonia detection")
+    st.write(os.listdir())
     uploaded_file = st.file_uploader("Choose a photo")
     click = st.button("delete model")
     if click:
@@ -36,7 +37,6 @@ def get_analis():
         else:
             st.write("already doesn't exist")
     if uploaded_file is not None:
-        st.write(os.listdir())
         if not os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
             output = 'Pnevmania_detection/variables/variables.data-00000-of-00001'
             url = "https://github.com/chaous/webApp/releases/download/1.0.0/variables.data-00000-of-00001"
