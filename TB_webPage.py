@@ -1,25 +1,11 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Activation, Dense, Flatten, BatchNormalization, Conv2D, MaxPool2D
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.metrics import categorical_crossentropy
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from sklearn.metrics import confusion_matrix
-import itertools
 import os
-import shutil
-import random
-import glob
-import matplotlib.pyplot as plt
-import warnings
 import streamlit as st
-from PIL import Image, ImageOps
 from tensorflow.keras.preprocessing.image import img_to_array
 import gdown
 from PIL import Image
-from google_drive_downloader import GoogleDriveDownloader as gdd
 import zipfile
 
 
@@ -27,13 +13,13 @@ import zipfile
 def get_analis():
     st.title("TB detection")
     uploaded_file = st.file_uploader("Choose a photo")
-    click = st.button("delete modedel")
-    if click:
-        if os.path.exists("TB_detection"):
-            os.remove("TB_detection")
-            st.write("delited")
-        else:
-            st.write("already doesn't exist")
+    #'''click = st.button("delete modedel")
+    #if click:
+    #    if os.path.exists("TB_detection"):
+    #        os.remove("TB_detection")
+    #        st.write("delited")
+    #    else:
+    #        st.write("already doesn't exist")'''
     if uploaded_file is not None:
         if not os.path.exists("TB_detection"):
             output = 'TB_detection'
@@ -45,7 +31,7 @@ def get_analis():
                 zip_ref.extractall(output)
             os.remove('_detection.zip')
             st.write("Done")
-        model = keras.models.load_model("TB_detection")
+        model = keras.models.load_model("TB_detection/TB_detection")
         image = Image.open(uploaded_file)
         image = image.resize((224, 224), 3).convert('RGB')
         #st.image(image)

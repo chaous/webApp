@@ -1,22 +1,9 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Activation, Dense, Flatten, BatchNormalization, Conv2D, MaxPool2D
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.metrics import categorical_crossentropy
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
-import shutil
-import random
-import glob
-import matplotlib.pyplot as plt
-import warnings
 import streamlit as st
-from PIL import Image, ImageOps
 from tensorflow.keras.preprocessing.image import img_to_array
-import gdown
-import TB_webPage
 from PIL import Image
 import urllib.request
 
@@ -27,16 +14,16 @@ import urllib.request
 
 def get_analis():
     st.title("Pneumonia detection")
-    #st.write(os.listdir())
     uploaded_file = st.file_uploader("Choose a photo")
-    click = st.button("delete model")
-    if click:
-        if os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
-            os.remove("Pnevmania_detection/variables/variables.data-00000-of-00001")
-            st.write("delited")
-        else:
-            st.write("already doesn't exist")
+    #'''click = st.button("delete model")
+    #if click:
+    #    if os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
+    #        os.remove("Pnevmania_detection/variables/variables.data-00000-of-00001")
+     #       st.write("delited")
+    #    else:
+    #       st.write("already doesn't exist")'''
     if uploaded_file is not None:
+        #st.write(os.listdir())
         if not os.path.exists("Pnevmania_detection/variables/variables.data-00000-of-00001"):
             output = 'Pnevmania_detection/variables/variables.data-00000-of-00001'
             url = "https://github.com/chaous/webApp/releases/download/1.0.0/variables.data-00000-of-00001"

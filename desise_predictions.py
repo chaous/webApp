@@ -1,13 +1,9 @@
 import pandas as pd
 import numpy as np
-
-import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Activation, Dense
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.metrics import categorical_crossentropy
 import streamlit as st
+import os
+import gdown
 
 def get_analis():
     st.header("Disease prediction")
@@ -20,6 +16,11 @@ def get_analis():
 
     symptoms = st.multiselect("pick symptoms", symptops_list)
     symptoms_for_ai = np.zeros(len(symptops_list))
+    if not os.path.exists("DesisePredictions/variables/variables.data-00000-of-00001"):
+        #output = 'DesisePredictions/variables/variables.data-00000-of-00001'
+        url = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=1kY0I1cTkvpaQsPXIjdKhzRtu5mTXJyys"
+        st.write("downloading a model this might take a while")
+        gdown.download(url, 'DesisePredictions/variables/variables.data-00000-of-00001', quiet=False)
     for i in symptoms:
         symptoms_for_ai[symptops_list.index(i)] = 1
     if not np.array_equal(symptoms_for_ai, np.zeros(len(symptops_list))):

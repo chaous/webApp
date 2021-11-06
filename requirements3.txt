@@ -1,0 +1,8 @@
+tensorflow==2.5.0
+tensorflow-addons==0.13.0
+tensorflow-estimator==2.5.0
+numpy==1.19.2
+Pillow==7.0.0
+pandas==1.2.4
+streamlit==0.83.0
+gdown==3.13.0
